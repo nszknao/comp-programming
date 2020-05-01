@@ -25,6 +25,9 @@ s.add()
 ##########
 # 商と余り
 q, mod = divmod(10, 3)
+# 逆行列
+l_2d = [[1,2], [3,4]]
+l_2d_t = [list(x) for x in zip(*l_2d)]
 # nCr
 from operator import mul
 from functools import reduce
@@ -37,13 +40,18 @@ def cmb(n,r):
 # 組み合わせを列挙
 import itertools
 for v in itertools.combinations([1,2,3], 2):
-    # vはタプル
+    # [(1, 2), (1, 3), (2, 3)]
     # もとのlistの順番は崩れない
     print(v)
 # デカルト積
 import itertools
 for v in itertools.product([1,2,3], [1,2,3]):
-    # vはタプル
+    # [(1, 1), (1, 2), (1, 3), (2, 1), (2, 2), (2, 3), (3, 1), (3, 2), (3, 3)]
+    print(v)
+# 順列
+import itertools
+for v in itertools.permutations([1,2,3]):
+    # [(1, 2, 3), (1, 3, 2), (2, 1, 3), (2, 3, 1), (3, 1, 2), (3, 2, 1)]
     print(v)
 # 約数を列挙
 def make_divisors(n):
@@ -70,3 +78,24 @@ def popcount(x):
     x = x + (x >> 16) # 32bitごと
     x = x + (x >> 32) # 64bitごと = 全部の合計
     return x & 0x0000007f
+
+# 二分探索
+def binary_search(arr, item):
+    """
+    arr: 昇順にソート済list
+    """
+    low = 0
+    high = len(arr) - 1
+    while low <= high:
+        mid = (low + high) // 2
+        guess = arr[mid]
+        if guess == item:
+            return mid
+        if guess > item:
+            high = mid - 1
+        else:
+            low = mid + 1
+
+    # 最終的にlowとhighは同じ値になる
+    # 加えて、itemが間に挟まったらlow(=high)は右側(大きい値)に寄る
+    return None
