@@ -78,8 +78,14 @@ def popcount(x):
     x = x + (x >> 16) # 32bitごと
     x = x + (x >> 32) # 64bitごと = 全部の合計
     return x & 0x0000007f
-
 # 二分探索
+from bisect import bisect, bisect_left
+# bisectは、値が存在したらその次のindexを返す
+# bisect_leftは、値が存在したらその前のindexを返す
+arr = [1,20,30,55]
+bisect(arr, 20) # →2
+bisect_left(arr, 20) # →1
+# 二分探索(arrに存在しなかったら、Noneを返す)
 def binary_search(arr, item):
     """
     arr: 昇順にソート済list
