@@ -43,6 +43,11 @@ for v in itertools.combinations([1,2,3], 2):
     # [(1, 2), (1, 3), (2, 3)]
     # もとのlistの順番は崩れない
     print(v)
+# 重複組み合わせを列挙
+for v in itertools.combinations_with_replacement([1,2,3], 3):
+    # [(1, 1, 1), (1, 1, 2), (1, 1, 3), (1, 2, 2), (1, 2, 3), (1, 3, 3), (2, 2, 2), (2, 2, 3), (2, 3, 3), (3, 3, 3)]
+    # もとのlistの順番は崩れない
+    print(v)
 # デカルト積
 import itertools
 for v in itertools.product([1,2,3], [1,2,3]):
