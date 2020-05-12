@@ -110,3 +110,16 @@ def binary_search(arr, item):
     # 最終的にlowとhighは同じ値になる
     # 加えて、itemが間に挟まったらlow(=high)は右側(大きい値)に寄る
     return None
+# 三分探索(凸関数f(x)の最適化に使えた)
+left = 0
+right = 100 # sampleケースでinputが最大のときの答えが90ちょいだから
+def f(x):
+    return 2**x
+while right - left > 0.000000001:
+    mid_left = right/3 + left*2/3
+    mid_right = right*2/3 + left/3
+    if f(mid_left) > f(mid_right):
+        left = mid_left
+    else:
+        right = mid_right
+print(f(right))
