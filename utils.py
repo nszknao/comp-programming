@@ -123,3 +123,20 @@ while right - left > 0.000000001:
     else:
         right = mid_right
 print(f(right))
+# 深さ優先探索(DFS)
+n = 10
+first_order = [-1] * n
+last_order = [-1] * n
+ptr = 1
+seen = [False] * n
+def dfs(g, seen, idx):
+    global first_order, first_order, ptr
+    first_order[idx] = ptr
+    ptr += 1
+    seen[idx] = True
+    for i in g[idx]:
+        # idxから行ける各頂点について
+        if seen[i]: continue
+        dfs(g, seen, i)
+    last_order[idx] = ptr
+    ptr += 1
